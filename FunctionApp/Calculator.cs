@@ -15,7 +15,7 @@ namespace FunctionApp
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation(string.Concat("C# Calculator function started at ", DateTime.UtcNow,"."));
 
             try
             {
@@ -59,10 +59,12 @@ namespace FunctionApp
 
                 }
 
+                log.LogInformation(string.Concat("C# Calculator function completed at ", DateTime.UtcNow, "."));
                 return response;
             }
             catch (Exception ex)
             {
+                log.LogError(string.Concat("C# Calculator function received error at ", DateTime.UtcNow, "."));
                 log.LogError(ex.Message, ex);
                 throw;
             }
