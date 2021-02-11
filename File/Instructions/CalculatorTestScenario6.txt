@@ -1,0 +1,8 @@
+add 2
+multiply 3
+multiply 9
+add 40
+add 40
+add 40
+add 40
+apply 5
