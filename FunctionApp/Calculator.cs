@@ -29,7 +29,7 @@ namespace FunctionApp
 
             try
             {
-                long response = 0;
+                decimal response = 0;
                 Queue queOperator = new Queue();
                 Queue queOperand = new Queue();
                 string[] result = _fileOperation.ReadFileLines();
@@ -70,7 +70,7 @@ namespace FunctionApp
                 }
 
                 log.LogInformation(string.Concat("C# Calculator function completed at ", DateTime.UtcNow, "."));
-                return response;
+                return Convert.ToInt64(response);
             }
             catch (Exception ex)
             {
@@ -85,14 +85,14 @@ namespace FunctionApp
             fileLines = fileLines.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
             #region Check operator and operand list
-            long parsedId;
+            decimal parsedId;
             List<string> operatorsList = new List<string>() { "add", "divide", "multiply", "subtract", "apply" };
             foreach (var line in fileLines)
             {
                 if (!operatorsList.Contains(line.Split(" ")[0].ToLower()))
                     throw new Exception("Invalid File Format");
 
-                if (!long.TryParse(line.Split(" ")[1], out parsedId))
+                if (!decimal.TryParse(line.Split(" ")[1], out parsedId))
                     throw new Exception("Invalid File Format");
             }
             #endregion 
