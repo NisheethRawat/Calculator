@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/File/obj
+/FileOperations/bin/Debug/netcoreapp3.1
+/FileOperations/obj/Debug/netcoreapp3.1
+/FileOperations/obj
+/NUnitTestProject/bin/Debug/netcoreapp3.1
+/NUnitTestProject/obj
