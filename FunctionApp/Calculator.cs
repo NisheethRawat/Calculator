@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Collections;
 using System.IO;
-using FileOperation;
+using FileOperations;
 using System.Net.Http;
 using System.Linq;
 using System.Collections.Generic;
@@ -14,9 +14,9 @@ namespace FunctionApp
 {
     public class Calculator
     {
-        private readonly IFileOperations _fileOperation;
+        private readonly IFileOperation _fileOperation;
 
-        public Calculator(IFileOperations fileOperation)
+        public Calculator(IFileOperation fileOperation)
         {
             _fileOperation = fileOperation;
         }
@@ -30,44 +30,13 @@ namespace FunctionApp
             try
             {
                 decimal response = 0;
-                Queue queOperator = new Queue();
-                Queue queOperand = new Queue();
-                string[] result = _fileOperation.ReadFileLines();
-                ValidateFile(ref result);
+                string[] fileLines = _fileOperation.ReadFileLines();
 
-                foreach (var syntax in result)
-                {
-                    if (syntax.Split(" ")[0].ToLower() == "apply")
-                    {
-                        response = Convert.ToInt32(syntax.Split(" ")[1]);
-                        break;
-                    }
-                    else
-                    {
-                        queOperator.Enqueue(syntax.Split(" ")[0]);
-                        queOperand.Enqueue(syntax.Split(" ")[1]);
-                    }
-                }
+                IValidateFile _validateFile = new ValidateFile();
+                _validateFile.ValidateFileContent(ref fileLines);
 
-                while (queOperand.Count > 0)
-                {
-                    switch (queOperator.Dequeue().ToString().ToLower())
-                    {
-                        case "add":
-                            response = response + Convert.ToInt32(queOperand.Dequeue());
-                            break;
-                        case "subtract":
-                            response = response - Convert.ToInt32(queOperand.Dequeue());
-                            break;
-                        case "multiply":
-                            response = response * Convert.ToInt32(queOperand.Dequeue());
-                            break;
-                        case "divide":
-                            response = response / Convert.ToInt32(queOperand.Dequeue());
-                            break;
-                    }
-
-                }
+                IEvaluateExpression _evaluateExpression = new EvaluateExpression();
+                _evaluateExpression.Evaluate(ref fileLines, ref response);
 
                 log.LogInformation(string.Concat("C# Calculator function completed at ", DateTime.UtcNow, "."));
                 return Convert.ToInt64(response);
@@ -78,29 +47,6 @@ namespace FunctionApp
                 log.LogError(ex.Message, ex);
                 throw;
             }
-        }
-
-        private void ValidateFile(ref string[] fileLines)
-        {
-            fileLines = fileLines.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-            #region Check operator and operand list
-            decimal parsedId;
-            List<string> operatorsList = new List<string>() { "add", "divide", "multiply", "subtract", "apply" };
-            foreach (var line in fileLines)
-            {
-                if (!operatorsList.Contains(line.Split(" ")[0].ToLower()))
-                    throw new Exception("Invalid File Format");
-
-                if (!decimal.TryParse(line.Split(" ")[1], out parsedId))
-                    throw new Exception("Invalid File Format");
-            }
-            #endregion 
-
-            #region Check apply is present
-            if (fileLines.Where(x => x.ToLower().Contains("apply")).ToList().Count <= 0)
-                throw new Exception("Invalid File Format");
-            #endregion 
         }
     }
 }

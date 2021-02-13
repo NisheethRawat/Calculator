@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionApp", "FunctionApp.
 		{02BE65FD-116C-4FD7-8A7C-1AAEA77F48A1} = {02BE65FD-116C-4FD7-8A7C-1AAEA77F48A1}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileOperations", "..\File\FileOperations.csproj", "{02BE65FD-116C-4FD7-8A7C-1AAEA77F48A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileOperations", "..\FileOperations\FileOperations.csproj", "{02BE65FD-116C-4FD7-8A7C-1AAEA77F48A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestProject", "..\NUnitTestProject\NUnitTestProject.csproj", "{6C87B9DE-0B67-43CF-82E6-2857C51DC888}"
 EndProject

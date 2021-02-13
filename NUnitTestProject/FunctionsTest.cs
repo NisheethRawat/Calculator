@@ -1,4 +1,4 @@
-using FileOperation;
+using FileOperations;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using System;
@@ -11,13 +11,13 @@ namespace FunctionApp.Test
     public class FunctionsTest
     {
         private ILogger logger;
-        private Mock<IFileOperations> _fileOperation;
+        private Mock<IFileOperation> _fileOperation;
         private Calculator _calculator;
 
         [SetUp]
         public void Setup()
         {
-            _fileOperation = new Mock<IFileOperations>();
+            _fileOperation = new Mock<IFileOperation>();
             _calculator = new Calculator(_fileOperation.Object);
             logger = TestFactory.CreateLogger();
         }

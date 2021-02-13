@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using FileOperation;
+using FileOperations;
 
 [assembly: FunctionsStartup(typeof(FunctionApp.Startup))]
 namespace FunctionApp
@@ -11,8 +11,8 @@ namespace FunctionApp
         {
             builder.Services.AddHttpClient();
 
-            builder.Services.AddSingleton<IFileOperations>((s) => {
-                return new FileOperations();
+            builder.Services.AddSingleton<IFileOperation>((s) => {
+                return new FileOperation();
             });
         }
     }

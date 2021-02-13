@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 
-namespace FileOperation
+namespace FileOperations
 {
-    public class FileOperations : IFileOperations
+    public class FileOperation : IFileOperation
     {
         public string[] ReadFileLines() {
             string[] fileLines = File.ReadAllLines(string.Concat(Environment.CurrentDirectory, "\\Instructions\\Calculator.txt"));

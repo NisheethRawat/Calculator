@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FileOperation
+namespace FileOperations
 {
-    public interface IFileOperations
+    public interface IFileOperation
     {
         string[] ReadFileLines();
     }

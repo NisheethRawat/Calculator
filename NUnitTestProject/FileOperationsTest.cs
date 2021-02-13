@@ -1,4 +1,4 @@
-using FileOperation;
+using FileOperations;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using System;
@@ -19,7 +19,7 @@ namespace FunctionApp.Test
         public void ReadFileLinesTest()
         {
             //Arrange
-            FileOperations _fileOperations = new FileOperations();
+            FileOperation _fileOperations = new FileOperation();
             //Act
             var response = _fileOperations.ReadFileLines();
             //Assert
