@@ -8,7 +8,7 @@ using System.IO;
 
 namespace FunctionApp.Test
 {
-    public class FunctionsTest
+    public class CalculatorTest
     {
         private ILogger logger;
         private Mock<IFileOperation> _fileOperation;
@@ -26,7 +26,7 @@ namespace FunctionApp.Test
         [TestCase("\\Instructions\\CalculatorTestScenario0.txt", 45)]       
         [TestCase("\\Instructions\\CalculatorTestScenario2.txt", 15)]
         [TestCase("\\Instructions\\CalculatorTestScenario6.txt", 349)]
-        public void CalculatorTest(string fileName, long expectedResponse)
+        public void CalculatorTests(string fileName, long expectedResponse)
         {
             //Arrange
             string[] readFileLinesResponse = File.ReadAllLines(string.Concat(Environment.CurrentDirectory, fileName));

@@ -19,7 +19,7 @@ namespace FunctionApp.Test
         public void ReadFileLinesTest()
         {
             //Arrange
-            FileOperation _fileOperations = new FileOperation();
+            IFileOperation _fileOperations = new FileOperation();
             //Act
             var response = _fileOperations.ReadFileLines();
             //Assert
