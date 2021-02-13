@@ -29,5 +29,21 @@ namespace FunctionApp.Test
             //Assert
             Assert.DoesNotThrow(code);
         }
+
+        [TestCase("\\Instructions\\CalculatorTestScenario1.txt", "Invalid File Format")]
+        [TestCase("\\Instructions\\CalculatorTestScenario3.txt", "Invalid File Format")]
+        [TestCase("\\Instructions\\CalculatorTestScenario4.txt", "Invalid File Format")]
+        [TestCase("\\Instructions\\CalculatorTestScenario5.txt", "Invalid File Format")]
+        public void ValidateFileExceptionTests(string fileName, string expectedResponse)
+        {
+            //Arrange
+            string[] readFileLinesResponse = File.ReadAllLines(string.Concat(Environment.CurrentDirectory, fileName));
+            IValidateFile _validateFile = new ValidateFile();
+            //Act
+            var ex = Assert.Throws<Exception>(() => _validateFile.ValidateFileContent(ref readFileLinesResponse));
+
+            //Assert
+            Assert.AreEqual(ex.Message, expectedResponse);
+        }
     }
 }
