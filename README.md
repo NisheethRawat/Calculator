@@ -18,3 +18,9 @@
 	4. EvaluateExpression class is created to evaluate the input instructions.
 	5. Both the classes are exposed using the interface and used in Calculator.cs.
 	6. Dependent File layer is called using the interface object which is instantiated on the constructor of the function app.
+	
+# C# development skills show case
+
+	1. SOLID principles, Single responsibility principle, Interface design, Open closed principle.
+	2. Dependency Injection, C#, NUnit Test Framework
+	3. TDD, ability to write unit tests.
