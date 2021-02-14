@@ -13,7 +13,7 @@
 # Regarding Function App project
 
 	1. Startup.cs will instantiate the File operation to be used in any function App.
-	2. Complexity of file operations is hidden under File Interface for calling read and write operations.
+	2. Through dependency Injection calculator.cs interacts with FileOperations for read and write operation.
 	3. ValidateFile class is created to achieve validation on the input file.
 	4. EvaluateExpression class is created to evaluate the input instructions.
 	5. Both the classes are exposed using the interface and used in Calculator.cs.
